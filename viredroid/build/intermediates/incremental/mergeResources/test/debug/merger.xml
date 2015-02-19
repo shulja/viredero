@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/event/sw/cardboard-java/CardboardSample/src/androidTest/res"/><source path="/home/event/sw/cardboard-java/CardboardSample/build/generated/res/rs/test/debug"/><source path="/home/event/sw/cardboard-java/CardboardSample/build/generated/res/generated/test/debug"/></dataSet><mergedItems/></merger>

@@ -1,0 +1,1 @@
+/home/event/sw/cardboard-java/CardboardSample/build/intermediates/classes/test/debug
