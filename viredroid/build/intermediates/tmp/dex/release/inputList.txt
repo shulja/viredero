@@ -1,3 +1,0 @@
-/home/event/sw/viredero/viredroid/build/intermediates/classes/release
-/home/event/sw/viredero/viredroid/build/intermediates/pre-dexed/release/libprotobuf-java-2.3-nano-b264e51eefd00ff53ab19b067a8f02230b356e52.jar
-/home/event/sw/viredero/viredroid/build/intermediates/pre-dexed/release/cardboard-312ab0eb37001a5a7478239a9331ecd1440ceb96.jar
