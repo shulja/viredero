@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.vrtoolkit.cardboard.samples.treasurehunt;
+package org.viredroid.cardboard;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -33,13 +33,13 @@ import android.widget.TextView;
 /**
  * Contains two sub-views to provide a simple stereo HUD.
  */
-public class CardboardOverlayView extends LinearLayout {
-    private static final String TAG = CardboardOverlayView.class.getSimpleName();
+public class ViredroidOverlayView extends LinearLayout {
+    private static final String TAG = ViredroidOverlayView.class.getSimpleName();
     private final CardboardOverlayEyeView mLeftView;
     private final CardboardOverlayEyeView mRightView;
     private AlphaAnimation mTextFadeAnimation;
 
-    public CardboardOverlayView(Context context, AttributeSet attrs) {
+    public ViredroidOverlayView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOrientation(HORIZONTAL);
 
@@ -105,7 +105,7 @@ public class CardboardOverlayView extends LinearLayout {
      * A simple view group containing some horizontally centered text underneath a horizontally
      * centered image.
      *
-     * This is a helper class for CardboardOverlayView.
+     * This is a helper class for ViredroidOverlayView.
      */
     private class CardboardOverlayEyeView extends ViewGroup {
         private final ImageView imageView;

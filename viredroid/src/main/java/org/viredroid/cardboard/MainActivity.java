@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.vrtoolkit.cardboard.samples.treasurehunt;
+package org.viredroid.cardboard;
 
 import com.google.vrtoolkit.cardboard.CardboardActivity;
 import com.google.vrtoolkit.cardboard.CardboardView;
@@ -105,7 +105,7 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
     private float mFloorDepth = 20f;
 
     private Vibrator mVibrator;
-    private CardboardOverlayView mOverlayView;
+    private ViredroidOverlayView mOverlayView;
 
     /**
      * Converts a raw text file, saved as a resource, into an OpenGL ES shader.
@@ -174,7 +174,7 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
 
-        mOverlayView = (CardboardOverlayView) findViewById(R.id.overlay);
+        mOverlayView = (ViredroidOverlayView) findViewById(R.id.overlay);
         mOverlayView.show3DToast("Pull the magnet when you find an object.");
     }
 

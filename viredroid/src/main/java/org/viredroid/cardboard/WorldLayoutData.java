@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.vrtoolkit.cardboard.samples.treasurehunt;
+package org.viredroid.cardboard;
 
 /**
  * Contains vertex, normal and color data.
