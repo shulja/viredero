@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.viredroid.cardboard;
+package org.viredero.viredroid;
 
 import android.content.Context;
 import android.graphics.Color;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.viredroid.cardboard;
+package org.viredero.viredroid;
 
 import com.google.vrtoolkit.cardboard.CardboardActivity;
 import com.google.vrtoolkit.cardboard.CardboardView;
@@ -38,7 +38,6 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.egl.EGLConfig;
-
 /**
  * A Cardboard sample application.
  */
@@ -107,6 +106,8 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
     private Vibrator mVibrator;
     private ViredroidOverlayView mOverlayView;
 
+    private Sphere sphere;
+    
     /**
      * Converts a raw text file, saved as a resource, into an OpenGL ES shader.
      *
@@ -294,6 +295,8 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
 
         checkGLError("Floor program params");
 
+	sphere = new Sphere(2.0f, 10, 10);
+	
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
         // Object first appears directly in front of user.
@@ -376,6 +379,7 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
         Matrix.multiplyMM(mModelViewProjection, 0, perspective, 0,
             mModelView, 0);
         drawFloor();
+	sphere.draw(mModelViewProjection);
     }
 
     @Override

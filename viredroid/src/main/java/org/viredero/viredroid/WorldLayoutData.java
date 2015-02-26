@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.viredroid.cardboard;
+package org.viredero.viredroid;
 
 /**
  * Contains vertex, normal and color data.
