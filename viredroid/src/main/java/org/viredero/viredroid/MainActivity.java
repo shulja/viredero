@@ -69,7 +69,6 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
 
     private FloatBuffer mCubeVertices;
     private FloatBuffer mCubeColors;
-    private FloatBuffer mCubeFoundColors;
     private FloatBuffer mCubeNormals;
 
     private int mCubeProgram;
@@ -189,6 +188,18 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
         Log.i(TAG, "onSurfaceChanged");
     }
 
+
+    private void fillCubeCoords() {
+	mCubeVertices.put(DATA.CUBE_COORDS);
+        mCubeVertices.position(0);
+
+        mCubeColors.put(DATA.CUBE_COLORS);
+        mCubeColors.position(0);
+
+        mCubeNormals.put(DATA.CUBE_NORMALS);
+        mCubeNormals.position(0);
+
+    }
     /**
      * Creates the buffers we use to store information about the 3D world.
      *
@@ -205,27 +216,15 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
         ByteBuffer bbVertices = ByteBuffer.allocateDirect(DATA.CUBE_COORDS.length * 4);
         bbVertices.order(ByteOrder.nativeOrder());
         mCubeVertices = bbVertices.asFloatBuffer();
-        mCubeVertices.put(DATA.CUBE_COORDS);
-        mCubeVertices.position(0);
 
         ByteBuffer bbColors = ByteBuffer.allocateDirect(DATA.CUBE_COLORS.length * 4);
         bbColors.order(ByteOrder.nativeOrder());
         mCubeColors = bbColors.asFloatBuffer();
-        mCubeColors.put(DATA.CUBE_COLORS);
-        mCubeColors.position(0);
-
-        ByteBuffer bbFoundColors = ByteBuffer.allocateDirect(DATA.CUBE_FOUND_COLORS.length * 4);
-        bbFoundColors.order(ByteOrder.nativeOrder());
-        mCubeFoundColors = bbFoundColors.asFloatBuffer();
-        mCubeFoundColors.put(DATA.CUBE_FOUND_COLORS);
-        mCubeFoundColors.position(0);
 
         ByteBuffer bbNormals = ByteBuffer.allocateDirect(DATA.CUBE_NORMALS.length * 4);
         bbNormals.order(ByteOrder.nativeOrder());
         mCubeNormals = bbNormals.asFloatBuffer();
-        mCubeNormals.put(DATA.CUBE_NORMALS);
-        mCubeNormals.position(0);
-
+	fillCubeCoords();
         // make a floor
         ByteBuffer bbFloorVertices = ByteBuffer.allocateDirect(DATA.FLOOR_COORDS.length * 4);
         bbFloorVertices.order(ByteOrder.nativeOrder());
@@ -295,7 +294,7 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
 
         checkGLError("Floor program params");
 
-	sphere = new Sphere(2.0f, 10, 10);
+	// sphere = new Sphere(1.f, 4, 10);
 	
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
@@ -340,7 +339,7 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
     @Override
     public void onNewFrame(HeadTransform headTransform) {
         // Build the Model part of the ModelView matrix.
-        Matrix.rotateM(mModelCube, 0, TIME_DELTA, 0.5f, 0.5f, 1.0f);
+	//        Matrix.rotateM(mModelCube, 0, TIME_DELTA, 0.5f, 0.5f, 1.0f);
 
         // Build the camera matrix and apply it to the ModelView.
         Matrix.setLookAtM(mCamera, 0, 0.0f, 0.0f, CAMERA_Z, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
@@ -372,6 +371,7 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
         float[] perspective = eye.getPerspective(Z_NEAR, Z_FAR);
         Matrix.multiplyMM(mModelView, 0, mView, 0, mModelCube, 0);
         Matrix.multiplyMM(mModelViewProjection, 0, perspective, 0, mModelView, 0);
+	//	sphere.draw(mModelViewProjection);
         drawCube();
 
         // Set mModelView for the floor, so we draw floor in the correct location
@@ -379,7 +379,6 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
         Matrix.multiplyMM(mModelViewProjection, 0, perspective, 0,
             mModelView, 0);
         drawFloor();
-	sphere.draw(mModelViewProjection);
     }
 
     @Override
@@ -412,9 +411,9 @@ public class MainActivity extends CardboardActivity implements CardboardView.Ste
         // Set the normal positions of the cube, again for shading
         GLES20.glVertexAttribPointer(mCubeNormalParam, 3, GLES20.GL_FLOAT, false, 0, mCubeNormals);
         GLES20.glVertexAttribPointer(mCubeColorParam, 4, GLES20.GL_FLOAT, false, 0,
-                isLookingAtObject() ? mCubeFoundColors : mCubeColors);
+                mCubeColors);
 
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 36);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 30);
         checkGLError("Drawing cube");
     }
 

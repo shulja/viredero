@@ -25,7 +25,7 @@ public class Sphere {
     short[] indices;    // should probably be short
 
     // Set color with red, green, blue and alpha (opacity) values
-    float color[] = { 1f, 1f, 0f, 1.0f };
+    float color[] = { 1f, 0f, 0f, 1.0f };
 
     private final int mProgram;
     private int mPositionHandle;
